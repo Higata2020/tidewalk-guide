@@ -1,1 +1,1 @@
-# tidewalk-guide2026
+# tidewalk-guide

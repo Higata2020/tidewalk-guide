@@ -1,40 +1,220 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>タイドウォーク案内</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;padding:24px 20px 100vh;background:#d3d3d3;color:#000;font-family:sans-serif;font-size:16px;line-height:1.9}
-main{max-width:760px;margin:0 auto}
-h1{font-size:1.35rem;font-weight:normal;line-height:1.5;margin:0 0 24px}
-#narration{white-space:pre-wrap;overflow-wrap:anywhere}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>干潟の自然ガイド</title>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: #d3d3d3;
+      color: #111;
+      font-family: Arial, "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
+      font-size: 20px;
+      line-height: 1.8;
+    }
+    main { max-width: 820px; margin: 0 auto; padding: 24px 22px 80px; }
+    h1 { font-size: 1.35em; line-height: 1.4; margin: 0 0 1em; font-weight: 700; }
+    #japanese, #english { white-space: pre-line; }
+    #english-section { margin-top: 3.2em; padding-top: 1.4em; border-top: 1px solid #999; }
+    h2 { font-size: 1.15em; line-height: 1.5; margin: 0 0 0.9em; font-weight: 700; }
+    #english { font-size: 0.96em; }
+    @media (max-width: 480px) {
+      body { font-size: 18px; }
+      main { padding: 20px 18px 70px; }
+    }
+  </style>
 </head>
 <body>
-<main><h1 id="title"></h1><div id="narration"></div></main>
-<script>
-const pages = {"project": {"title": "プロジェクト「干潟と芸術」", "text": "Art and Tidal Flats「干潟と芸術」は、槙原泰介が主催する、アーティストを中心とした緩やかな集まりとしてスタートしました。\n東京湾に残る干潟に着目し、6年ほど前からリサーチを始め、現在に至ります。\n2024年には、槙原泰介が「内房総アートフェス」で、干潟とゴルフを題材にしたインスタレーションとツアーを行いました。\nまた、その秋には槙原泰介と今年の招聘作家、吉濱翔のコラボレーションによるワークショップを開催、2025年に「干潟と芸術」Vol.1として山田悠を招聘し、プロジェクトをスタート。以降、干潟を題材として毎年1名のアーティストによる制作・発表を行っています。\nまた、アーティストだけでなく、生物や風景、環境に関心を持つ方々にも関わっていただいています。\n記録やレビューは公式Webサイトにも掲載しておりますので、ご覧いただければ幸いです。"}, "azuma": {"title": "吾妻神社", "text": "江戸時代の記録も残る、古い縁起を持つ神社です。\n房総は古来、東国へ向かう際の足がかりとなっていて、海路では神奈川方面から房総へ到着するルートがありました。\n日本神話では、ヤマトタケルノミコトが東国へ向かう際、荒波のため三浦半島から海を渡れずに困っていたところ、弟橘媛（おとたちばなひめ）が身を投じて海を鎮めたという話があります。\nその死を悼んで「君去らず」という言葉から「木更津」という地名が生まれたともいわれています。\nまた、皆さんが乗車しているこのバスは袖ヶ浦ナンバーですが、神話では、その弟橘媛の着物の袖が後に岸へ流れ着いたことから、「袖ヶ浦」という地名が起こったとされています。\n※現在は、木更津市の隣に袖ヶ浦市として市名が残っています。"}, "obitsu": {"title": "小櫃川", "text": "小櫃川は全長88kmで、上流には亀山湖、中流には久留里という城下町があります。\その久留里は、豊富な地下水が湧き出る「名水の里」として知られています。\n房総半島は、100万年前には南部に、わずかな陸地があるだけで、このあたりは「古東京湾」と呼ばれる海でした。\n長い年月をかけて堆積した地層は、砂と泥が交互に重なった砂泥互層（さでいこうそう）を形成し、\nこの地層が、ちょうど水をろ過するフィルターの役割を果たすことで、きれいな湧水を生み出しています。\n干潟は、この小櫃川の河口にあたります。"}, "banzu": {"title": "盤洲干潟", "text": "干潟は、川が長い年月をかけて削った砂や、有機物を含む土砂が東京湾に流れ出て堆積することで地形をつくるとともに、干潟の生きものに養分をもたらしています。また、潮の満ち引きや生態系の活動によって酸素を生み出すだけでなく、ここでも微生物の働きによって、ゆっくりと水をきれいにしています。\n\n自然に形成される干潟は、いわゆる潮が引いたときのみ現れる地面＝「前浜」と呼ばれる部分とともに、葦や草木が生える湿地帯＝「後背湿地」（後浜）が存在します。この干潟は、後背湿地と前浜の両方が残り、約1,400ヘクタールという広大な面積を持っているという点において貴重で、日本最大級の砂質自然干潟と言われています。"}, "biology": {"title": "カニ", "text": "少し静かに地面見つめていると、だんだんと穴からカニが出てきて、砂や泥を食んでいます。\nこの小さなカニを「チゴガニ」といいます。\n人間も赤ちゃんのことを「稚児」といいますが、\nチゴガニは、手先が透き通るように白く、成長してもおおよそ1cm程度にしかならないことから、この「稚児」に見立てられてそう呼ばれています。\n春先には「ウェービング」といって、両手を高く上げる行動をします。求愛行動と考えられています。\nこのチゴガニは特に素早い動きに反応して巣穴に逃げ込みます。\nじっとしていれば、しゃべっていても観察することができます。"}, "plant1": {"title": "植物①", "text": "このあたりにはシャリンバイ、タイサンボク、エノキ科の市街地にも存在する樹木がいくつかみられます。\n鳥が落とした種子が育ち、自生したのかもしれません。\n一方で庭木としてもなじみ深いものです。\nこの干潟は、かつて不法投棄が絶えない場所だったようで、不要な家財に混ざって植木も廃棄され、その結果、ここに根を張ったものもあるのではないかとの推察もあります。"}, "plant2": {"title": "植物②", "text": "このあたりにマテバシイという木があります。\nマテバシイは、この干潟では珍しいのですが、実は干潟とは密接な関係のある植物です。\n枝先がどんどん細かくなって分かれていく特徴があり、海苔養殖の道具「ひび」として使われていたそうです。\nこのマテバシイは、もともと南方、九州の方が原産で、明治時代に房総半島の南部にたくさん植林されました。\n樹齢約150年を迎えるマテバシイの森は、まさに今が使い時ともいえますが、その役目を持たないまま、房総の山々を彩っています。\nその理由の一つは、海苔の養殖方法が変わったことです。\n現在は、海苔は主に水平に張った海苔網で養殖されているため、マテバシイの「ひび」は使われなくなりました。\nまた、北九州から製鉄所が誘致され、地域の主要産業が変化したことも原因にあります。\n山で育った木を干潟で海苔の養殖に使うという、山と海の循環の構想は、海苔から鉄への移行によって、崩れていくことになります。"}, "human": {"title": "人間", "text": "屋根にも植物が生えてしまったコンクリートの建物があります。\nこれは、この先の方角にある「浸透実験池」と呼ばれる1960年代の施設の一部で、こちらは「拡散実験水路」といわれるものです。\nマップアプリで上空から見ると分かるのですが、直径65メートルほどの池の周りに堤防と海水の堀がつくられ、二重の円形の構造になっています。\n人工的につくられた河口湖なのですが、こちらも産業の変化に関連しています。\n工業用水の需要が高まった当時、この小櫃川の河口に大きな河口湖をつくって淡水を取水する構想があり、その技術の有効性を調査するために、この池がつくられました。\nこれには千葉県以外の全国複数の自治体も出資しており、実験結果をそれぞれの地域に持ち帰り、活用することが目指されていました。\n実験終了後には、この場所にも大きな河口湖をつくる計画があったり、その後、埋め立てによる下水処理場の計画などもあったそうです。\nしかし、1973年の中東戦争をきっかけに起こったオイルショックによる経済活動の縮小、自然保護意識の高まりや漁業組合の反対などから埋め立てを免れ、放置された遺構とともに、緩やかに自然状態へと戻っていったそうです。\nちなみに、現在の実験池は非常に淡水に近い状態で保たれており、周りの塩湿地の中で特殊な水環境を持っています。\n野鳥の飛来地や営巣地にもなっています。\nこの実験池への道は、大半の季節は草で覆われ、たどり着くことができません。\n毎年冬場になると、野鳥観察者が道を踏み固めて、行くことができる季節があります。"}, "landscape": {"title": "風景", "text": "海に向かって左手には製鉄所が見えます。\nこれは60年ほど前から、ここの風景に加わったものになります。\n右手にはアクアラインが見えます。\nこちらは1997年に開通していますので、約30年前からここの風景に加わっています。\n正面には、天候次第で富士山が見えます。\n北斎や広重が描いた上総からの江戸への海運、「五大力船」が行き交う姿の手前にも、ひざまで海につかる人々や、干潟の草などが描かれています。\n木更津港が今のように整備される以前、港周辺にも浅瀬が広がっており、船が近くまで着けないことから、明治後期から大正期は「海中人力車」と呼ばれるもので岸に上がっていたそうです。\n木更津以外では九州・天草にもあったようです。"}};
-const page = new URLSearchParams(window.location.search).get("page") || "project";
-const selected = pages[page] || pages.project;
-document.title = selected.title + "｜タイドウォーク案内";
-document.getElementById("title").textContent = selected.title;
-document.getElementById("narration").textContent = selected.text;
-window.addEventListener("load", () => {
-  const speed = 10; // スクロール速度（ピクセル/秒）
-  let lastTime = null;
-  function autoScroll(time) {
-    if (lastTime === null) lastTime = time;
-    const elapsed = time - lastTime;
-    lastTime = time;
-    window.scrollBy(0, speed * elapsed / 1000);
-    if (window.innerHeight + window.scrollY < document.documentElement.scrollHeight - 1) {
-      requestAnimationFrame(autoScroll);
+  <main>
+    <h1 id="page-title">干潟の自然ガイド</h1>
+    <section id="japanese"></section>
+    <section id="english-section">
+      <h2 id="english-title"></h2>
+      <div id="english"></div>
+    </section>
+  </main>
+  <script>
+    const pages = {
+      project: {
+        title: "プロジェクト「干潟と芸術」",
+        englishTitle: "Project - Art and Tidal Flats",
+        text: `Art and Tidal Flats「干潟と芸術」は、槙原泰介が主催する、アーティストを中心とした緩やかな集まりとしてスタートしました。
+東京湾に残る干潟に着目し、6年ほど前からリサーチを始め、現在に至ります。
+2024年には、槙原泰介が「内房総アートフェス」で、干潟とゴルフを題材にしたインスタレーションとツアーを行いました。
+また、その秋には槙原泰介と今年の招聘作家、吉濱翔のコラボレーションによるワークショップを開催、2025年に「干潟と芸術」Vol.1として山田悠を招聘し、プロジェクトをスタート。以降、干潟を題材として毎年1名のアーティストによる制作・発表を行っています。
+また、アーティストだけでなく、生物や風景、環境に関心を持つ方々にも関わっていただいています。
+記録やレビューは公式Webサイトにも掲載しておりますので、ご覧いただければ幸いです。`,
+        en: `Art and Tidal Flats is a loose, artist-centered gathering initiated by artist Taisuke Makihara.
+The project focuses on the tidal flats that remain in Tokyo Bay. Research began around six years ago and continues today.
+In 2024, Makihara presented an installation and a tour exploring the relationship between tidal flats and golf as part of the Uchiboso Art Festival.
+That autumn, he held a collaborative workshop with Syo Yoshihama, the artist invited for the current edition. In 2025, the project formally began with Haruka Yamada as its first invited artist. Since then, one artist each year has created and presented work inspired by the tidal flats.
+The project also welcomes people interested in living organisms, landscapes, and the environment, not only artists.
+Documentation and reviews are available on the official website. We hope you will take a look.`
+      },
+      azuma: {
+        title: "吾妻神社",
+        englishTitle: "Azuma Shrine",
+        text: `江戸時代の記録も残る、古い縁起を持つ神社です。
+房総は古来、東国へ向かう際の足がかりとなっていて、海路では神奈川方面から房総へ到着するルートがありました。
+日本神話では、ヤマトタケルノミコトが東国へ向かう際、荒波のため三浦半島から海を渡れずに困っていたところ、弟橘媛（おとたちばなひめ）が身を投じて海を鎮めたという話があります。
+その死を悼んで「君去らず」という言葉から「木更津」という地名が生まれたともいわれています。
+また、皆さんが乗車しているこのバスは袖ヶ浦ナンバーですが、神話では、その弟橘媛の着物の袖が後に岸へ流れ着いたことから、「袖ヶ浦」という地名が起こったとされています。
+※現在は、木更津市の隣に袖ヶ浦市として市名が残っています。`,
+        en: `This shrine has an old origin story, and records of it survive from the Edo period.
+Since ancient times, the Boso Peninsula has served as a gateway to eastern Japan. By sea, one route reached Boso from the area around present-day Kanagawa.
+According to Japanese mythology, when Yamato Takeru was travelling east, rough seas prevented him from crossing from the Miura Peninsula. His wife, Ototachibana-hime, is said to have thrown herself into the sea, calming the waves.
+It is said that the place name Kisarazu came from the phrase “kimi sarazu,” expressing grief at her death.
+The bus you are riding has a Sodegaura registration. In another part of the same legend, the sleeve of Ototachibana-hime’s robe is said to have washed ashore, giving rise to the name Sodegaura.
+Today, Sodegaura remains the name of the city next to Kisarazu.`
+      },
+      obitsu: {
+        title: "小櫃川",
+        englishTitle: "Obitsu River",
+        text: `小櫃川は全長88kmで、上流には亀山湖、中流には久留里という城下町があります。
+その久留里は、豊富な地下水が湧き出る「名水の里」として知られています。
+房総半島は、100万年前には南部に、わずかな陸地があるだけで、このあたりは「古東京湾」と呼ばれる海でした。
+長い年月をかけて堆積した地層は、砂と泥が交互に重なった砂泥互層（さでいこうそう）を形成し、
+この地層が、ちょうど水をろ過するフィルターの役割を果たすことで、きれいな湧水を生み出しています。
+干潟は、この小櫃川の河口にあたります。`,
+        en: `The Obitsu River is 88 kilometers long. Kameyama Lake lies upstream, while Kururi, a former castle town, is in the middle reaches.
+Kururi is known as a place of pure spring water because of its abundant groundwater.
+Around one million years ago, only a small area of land existed in the southern Boso Peninsula. This area was then part of a sea known as Paleo-Tokyo Bay.
+Over a long period, layers of sand and mud accumulated in alternating bands, forming what is called a sand-and-mud sequence.
+These layers act like a natural filter, producing clear spring water.
+The tidal flats are located at the mouth of the Obitsu River.`
+      },
+      banzu: {
+        title: "盤洲干潟",
+        englishTitle: "Banzu Tidal Flat",
+        text: `干潟は、川が長い年月をかけて削った砂や、有機物を含む土砂が東京湾に流れ出て堆積することで地形をつくるとともに、干潟の生きものに養分をもたらしています。また、潮の満ち引きや生態系の活動によって酸素を生み出すだけでなく、ここでも微生物の働きによって、ゆっくりと水をきれいにしています。
+
+自然に形成される干潟は、いわゆる潮が引いたときのみ現れる地面＝「前浜」と呼ばれる部分とともに、葦や草木が生える湿地帯＝「後背湿地」（後浜）が存在します。この干潟は、後背湿地と前浜の両方が残り、約1,400ヘクタールという広大な面積を持っているという点において貴重で、日本最大級の砂質自然干潟と言われています。`,
+        en: `Tidal flats are formed as sand eroded by rivers over long periods, along with sediment containing organic matter, flows into Tokyo Bay and settles. This sediment also provides nutrients for the organisms living on the flats. Tides and ecological activity help generate oxygen, while microorganisms gradually help clean the water here as well.
+
+A naturally formed tidal flat includes the area exposed only at low tide, known as the foreshore, as well as a wetland behind it where reeds and other plants grow. This is called the backshore wetland.
+Banzu is valuable because both the backshore wetland and the foreshore remain, across an extensive area of about 1,400 hectares. It is considered one of Japan’s largest natural sandy tidal flats.`
+      },
+      biology: {
+        title: "カニ",
+        englishTitle: "Crabs",
+        text: `少し静かに地面見つめていると、だんだんと穴からカニが出てきて、砂や泥を食んでいます。
+この小さなカニを「チゴガニ」といいます。
+人間も赤ちゃんのことを「稚児」といいますが、
+チゴガニは、手先が透き通るように白く、成長してもおおよそ1cm程度にしかならないことから、この「稚児」に見立てられてそう呼ばれています。
+春先には「ウェービング」といって、両手を高く上げる行動をします。求愛行動と考えられています。
+このチゴガニは特に素早い動きに反応して巣穴に逃げ込みます。
+じっとしていれば、しゃべっていても観察することができます。`,
+        en: `If you quietly watch the ground for a while, crabs gradually emerge from their burrows and feed on sand and mud.
+This small crab is called the soldier crab, or *Ilyoplax pusilla*.
+In Japanese, the word “chigo” refers to a young child. The crab is given this name because its claw tips are almost translucent white and it grows to only about one centimeter long.
+In early spring, it raises both claws high in a behavior known as “waving.” This is thought to be part of its courtship display.
+These crabs are especially quick to retreat into their burrows when they detect sudden movement.
+If you remain still, you can observe them even while talking.`
+      },
+      plant1: {
+        title: "植物①",
+        englishTitle: "Plants 1",
+        text: `このあたりにはシャリンバイ、タイサンボク、エノキ科の市街地にも存在する樹木がいくつかみられます。
+鳥が落とした種子が育ち、自生したのかもしれません。
+一方で庭木としてもなじみ深いものです。
+この干潟は、かつて不法投棄が絶えない場所だったようで、不要な家財に混ざって植木も廃棄され、その結果、ここに根を張ったものもあるのではないかとの推察もあります。`,
+        en: `Several trees found here are also familiar in urban areas, including Japanese hawthorn, southern magnolia, and trees from the elm family.
+Some may have grown naturally from seeds dropped by birds.
+These species are also commonly planted in gardens.
+This tidal flat was apparently once a place where illegal dumping was frequent. It has been suggested that some trees may have taken root here after being discarded along with unwanted household belongings.`
+      },
+      plant2: {
+        title: "植物②",
+        englishTitle: "Plants 2",
+        text: `このあたりにマテバシイという木があります。
+マテバシイは、この干潟では珍しいのですが、実は干潟とは密接な関係のある植物です。
+枝先がどんどん細かくなって分かれていく特徴があり、海苔養殖の道具「ひび」として使われていたそうです。
+このマテバシイは、もともと南方、九州の方が原産で、明治時代に房総半島の南部にたくさん植林されました。
+樹齢約150年を迎えるマテバシイの森は、まさに今が使い時ともいえますが、その役目を持たないまま、房総の山々を彩っています。
+その理由の一つは、海苔の養殖方法が変わったことです。
+現在は、海苔は主に水平に張った海苔網で養殖されているため、マテバシイの「ひび」は使われなくなりました。
+また、北九州から製鉄所が誘致され、地域の主要産業が変化したことも原因にあります。
+山で育った木を干潟で海苔の養殖に使うという、山と海の循環の構想は、海苔から鉄への移行によって、崩れていくことになります。`,
+        en: `There is a tree called matebashii, or Japanese stone oak, growing in this area.
+It is uncommon on this tidal flat, yet it has a close historical connection with tidal-flat environments.
+Its branches divide into increasingly fine twigs, making them suitable for “hibi,” branches once used in nori seaweed cultivation.
+The species originated farther south, including Kyushu, and many trees were planted in southern Boso during the Meiji period.
+Today, some matebashii forests are around 150 years old. The trees could be ready for use, yet they continue to cover the Boso hills without their former role.
+One reason is the change in nori cultivation methods. Today, nori is mainly grown on nets stretched horizontally, so the traditional matebashii branches are no longer used.
+Another factor was the arrival of steelworks from northern Kyushu, which changed the region’s main industry.
+The idea of a cycle linking mountains and sea—growing trees in the hills and using them to cultivate seaweed on the tidal flats—gradually broke down as the region shifted from nori production to steel.`
+      },
+      human: {
+        title: "人間",
+        englishTitle: "Human Activity",
+        text: `屋根にも植物が生えてしまったコンクリートの建物があります。
+これは、この先の方角にある「浸透実験池」と呼ばれる1960年代の施設の一部で、こちらは「拡散実験水路」といわれるものです。
+マップアプリで上空から見ると分かるのですが、直径65メートルほどの池の周りに堤防と海水の堀がつくられ、二重の円形の構造になっています。
+人工的につくられた河口湖なのですが、こちらも産業の変化に関連しています。
+工業用水の需要が高まった当時、この小櫃川の河口に大きな河口湖をつくって淡水を取水する構想があり、その技術の有効性を調査するために、この池がつくられました。
+これには千葉県以外の全国複数の自治体も出資しており、実験結果をそれぞれの地域に持ち帰り、活用することが目指されていました。
+実験終了後には、この場所にも大きな河口湖をつくる計画があったり、その後、埋め立てによる下水処理場の計画などもあったそうです。
+しかし、1973年の中東戦争をきっかけに起こったオイルショックによる経済活動の縮小、自然保護意識の高まりや漁業組合の反対などから埋め立てを免れ、放置された遺構とともに、緩やかに自然状態へと戻っていったそうです。
+ちなみに、現在の実験池は非常に淡水に近い状態で保たれており、周りの塩湿地の中で特殊な水環境を持っています。
+野鳥の飛来地や営巣地にもなっています。
+この実験池への道は、大半の季節は草で覆われ、たどり着くことができません。
+毎年冬場になると、野鳥観察者が道を踏み固めて、行くことができる季節があります。`,
+        en: `There is a concrete structure here with plants growing even on its roof.
+It is part of a facility built in the 1960s known as the Infiltration Experimental Pond. This particular structure is called the Diffusion Experimental Channel.
+Viewed from above on a map app, you can see a pond about 65 meters in diameter, surrounded by an embankment and a seawater moat, forming two concentric circles.
+This is an artificial estuary lake, and its story is also linked to changes in industry.
+As demand for industrial water grew, there was a plan to create a large lake at the mouth of the Obitsu River to collect fresh water. This pond was built to test whether the technology would work.
+Several local governments from across Japan, not just Chiba Prefecture, helped fund the project. The aim was for each region to take the results home and apply them locally.
+After the experiment ended, plans were reportedly considered to build a large estuary lake here, followed later by a sewage treatment plant on reclaimed land.
+However, economic contraction following the 1973 oil crisis, growing awareness of nature conservation, and opposition from the local fisheries cooperative helped prevent reclamation. The abandoned structures remained as the area gradually returned to a more natural state.
+Today, the experimental pond is maintained in a condition close to fresh water, creating a distinctive aquatic environment within the surrounding salt marsh.
+It is also a destination and nesting site for wild birds.
+For much of the year, the path to the pond is overgrown and impassable. In winter, birdwatchers sometimes make it possible to reach the pond by gradually trampling the vegetation along the path.`
+      },
+      landscape: {
+        title: "風景",
+        englishTitle: "Landscape",
+        text: `海に向かって左手には製鉄所が見えます。
+これは60年ほど前から、ここの風景に加わったものになります。
+右手にはアクアラインが見えます。
+こちらは1997年に開通していますので、約30年前からここの風景に加わっています。
+正面には、天候次第で富士山が見えます。
+北斎や広重が描いた上総からの江戸への海運、「五大力船」が行き交う姿の手前にも、ひざまで海につかる人々や、干潟の草などが描かれています。
+木更津港が今のように整備される以前、港周辺にも浅瀬が広がっており、船が近くまで着けないことから、明治後期から大正期は「海中人力車」と呼ばれるもので岸に上がっていたそうです。
+木更津以外では九州・天草にもあったようです。`,
+        en: `Looking out to sea, you can see a steelworks on the left. It became part of this landscape about 60 years ago.
+On the right is the Aqua-Line, which opened in 1997 and has been part of the view for around 30 years.
+Depending on the weather, Mount Fuji can be seen straight ahead.
+In works by Hokusai and Hiroshige depicting the sea route from Kazusa to Edo, ships known as godairiki-bune appear alongside people standing in the sea up to their knees and plants growing on the tidal flats.
+Before Kisarazu Port was developed into its present form, shallow water extended around the harbor, preventing boats from coming close to shore. From the late Meiji period into the Taisho period, people reportedly used vehicles called “kaichu jinrikisha”—literally, “rickshaws in the sea”—to reach the shore.
+Similar vehicles are said to have existed in Amakusa, Kyushu, as well as in Kisarazu.`
+      }
+    };
+
+    const key = new URLSearchParams(window.location.search).get("page") || "project";
+    const page = pages[key] || pages.project;
+    document.title = `${page.title} | 干潟の自然ガイド`;
+    document.getElementById("page-title").textContent = page.title;
+    document.getElementById("japanese").textContent = page.text;
+    document.getElementById("english-title").textContent = page.englishTitle;
+    document.getElementById("english").textContent = page.en;
+
+    // 自動スクロール：毎秒10ピクセル。ページ末尾で停止します。
+    const speed = 10;
+    let lastTime = null;
+    function autoScroll(timestamp) {
+      if (lastTime === null) lastTime = timestamp;
+      const elapsed = (timestamp - lastTime) / 1000;
+      lastTime = timestamp;
+      window.scrollBy(0, speed * elapsed);
+      if (window.innerHeight + window.scrollY < document.documentElement.scrollHeight - 1) {
+        requestAnimationFrame(autoScroll);
+      }
     }
-  }
-  requestAnimationFrame(() => requestAnimationFrame(autoScroll));
-});
-</script>
+    window.addEventListener("load", () => requestAnimationFrame(autoScroll));
+  </script>
 </body>
 </html>
